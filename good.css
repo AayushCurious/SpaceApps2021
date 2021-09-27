@@ -129,8 +129,7 @@ body{
           animation: third 0.7s 1 forwards 2s;
       }
       
-      
-  /* Animation */
+
   @keyframes first {
       from {transform: rotate(0deg);}
       to {transform: rotate(100deg);}
