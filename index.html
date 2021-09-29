@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="good.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+
+    <title>Sol</title>
+</head>
+<body class="body">
+    <style>
+        .alien {
+            position: absolute;
+            top: -100px;
+            bottom: 0;
+            left: -100px;
+            right: 0;
+            margin: auto;
+            width: 400px;
+            height: 400px;
+            background-image: url(downloads.jpeg);
+            border-radius: 50%;
+            background-size: cover;
+            box-shadow: -20px -20px 50px 2px rgb(255,117,24) inset, 0 0 20px 2px rgb(248, 99, 0);
+            animation: spin 20s linear alternate infinite;
+            transition: 00.7s;
+        }
+    
+        @keyframes spin {
+            100% {
+                background-position: 100%;
+            }
+        }
+
+        .alien:hover{
+            box-shadow: -30px -30px 50px 20px rgb(255,117,24) inset, 0 0 30px 5px rgb(248, 99, 0);
+            border-radius: 60%;
+            width: 420px;
+            height:420px;
+        }
+
+        #myChart2{
+            position: absolute;
+            top: -300px;
+            bottom: 0;
+            left: 1000px;
+            right: 0;
+            margin: auto;
+        }
+        .solar-wave{
+            position: absolute;
+            top: 350px;
+            bottom: 0;
+            left: 1150px;
+            right: 0;
+            margin: auto;
+        }
+        #myChart3{
+            position: absolute;
+            top: 340px;
+            bottom: 0;
+            left: 1000px;
+            right: 0;
+            margin: auto;
+        }
+
+        .ISW{
+            position: absolute;
+            top: 670px;
+            bottom: 0;
+            left: 1150px;
+            right: 0;
+            margin: auto;
+        }
+        .boom{
+            position: absolute;
+            top: 550px;
+            bottom: 0;
+            left: -50px;
+            right: 0;
+            margin: auto;
+
+        }
+
+      
+        
+    </style>
+    <div class="alien">
+        <ul>
+    
+            <p class=""></p>
+        </ul>
+    </div>
+    <nav class="navbar">
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+    <div class='navbar-links'>
+        <ul>
+            <li class="btn"><a href="#">Home</a></li>
+            <li class="btn"><a href="#">Probes</a></li>
+            <li class="btn"><a href="#">Updates</a></li>            
+             <li class="btn"><a href="#">Level-3</a></li>
+        </ul>
+    </div>
+    </nav>
+    <div class="ok">
+        <div class="container">
+            <div class="donut-chart-block block"> 
+                  <div class="donut-chart">
+                      <div id="part1" class="portion-block"><div class="circle"></div></div>
+                      <div id="part2" class="portion-block"><div class="circle"></div></div>
+                      <div id="part3" class="portion-block"><div class="circle"></div></div>
+                      <p class="center">Speed: 369 km/sec</p>      
+                    </div>
+             </div>
+          </div>
+        <!-- <iframe src='https://solarsystem.nasa.gov/gltf_embed/2356' width='100%' height='450px' frameborder='0' /> -->
+    </div>
+ <div>
+    <p id="demo" style="transition: 0.7s ease-in-out;"></p>
+</div>
+    <script>
+    var countDownDate = new Date("Sept 30, 2021 15:37:25").getTime();
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("demo").innerHTML ="Since:"+ days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "Updating..";
+      }
+    }, 1000);
+    </script>
+<p>Dataset Solar</p>
+<canvas id="myChart" style="width:100%;max-width:300px"></canvas>
+
+<script>
+var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "rgb(255,117,24)",
+      fill: false
+    }, { 
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "#333",
+      fill: false
+    }, { 
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "#ffff",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+</script>
+<canvas id="myChart2" style="width:100%;max-width:400px;transition: 0.7s;"></canvas>
+<p class="solar-wave">Solar Wave Function(γ)</p>
+<script>
+var xValues = [];
+var yValues = [];
+generateData("Math.sin(x)", 0, 10, 4);
+
+new Chart("myChart2", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      pointRadius: 2,
+      borderColor: "rgb(255,117,24)",
+      data: yValues
+    }]
+  },    
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+    //   text: "y = x * 2 + 7",
+      fontSize: 16
+    }
+  }
+});
+function generateData(value, i1, i2, step = 1) {
+  for (let x = i1; x <= i2; x += step) {
+    yValues.push(eval(value));
+    xValues.push(x);
+  }
+}
+</script>
+<canvas id="myChart3" style="width:100%;max-width:400px;transition: 0.7s;"></canvas>
+<div class="ISW">Integrated-Space-Weather</div>
+<script>
+var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart3", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(255,255,255,1)",
+      borderColor: "rgb(255,117,24)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+</script>
+<!-- <form class="example" action="action_page.php">
+  <input id="search" type="text" placeholder=" "name="search" style="background-color: #000; border-top: black; border-left: black;border-right: black;">
+  <button type="submit" style="background-color: #000;border-color: black;color: #fff;"><i class="lni lni-search-alt"></i></button>
+</form> -->
+<script async src="https://cse.google.com/cse.js?cx=de31db088d5f4c310"></script>
+<div class="boom"style="width: 350px;"><div class="gcse-search"></div></div>
+</body>
+</html>
