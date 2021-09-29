@@ -152,7 +152,7 @@ body{
   }
 
   #myChart{
-    border-radius: 7%;
+    border-radius: 4%;
     transition: .7s;
     border-color:white;
     border-top: solid 2px white;
