@@ -17,7 +17,18 @@
     <div class='sim'>
         <div class="game"></div>
         <div class='hitBox'></div>
-        <div class='settings'></div>
+        <div class="settings">
+            <p><img src="images/Mercury.png"> Mercury</p>
+            <p><img src="images/Venus.png"> Venus</p>
+            <p><img src="images/Earth.png"> Earth</p>
+            <p><img src="images/Mars.png"> Mars</p>
+            <p><img src="images/Jupiter.png"> Jupiter</p>
+            <p><img src="images/Saturn.png"> Saturn</p>
+            <p><img src="images/Uranus.png"> Uranus</p>
+            <p><img src="images/Neptune.png"> Neptune</p>
+            <input id="makeFactor" type="number" value=10>
+        </div>
+
         <div class='planetNumbers'>
             <div class='indicator'><img></div>
             <div>Mercury: <span></span></div>
@@ -31,6 +42,8 @@
             <hr>
             <div>Total: <span></span></div>
         </div>
+
+        <div class='clearbtn'><a onclick=reset()>clear</a></div>
     </div>
     <script src='UImanager.js'></script>
     <script src='script.js'></script>
