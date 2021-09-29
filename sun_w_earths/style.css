@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+.game {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.sim {
+    display: flex;
+}
+.settings {
+    color: white;
+    position: absolute;
+    height: 100%;
+    min-width: 50px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(50,50,50,0.9);
+    transform: translateX(-100%);
+    border-radius: 0 0 20px 0;
+    transition: 0.5s;
+}
+.hitBox {
+    position: absolute;
+    background: rgba(50,50,50,0.9);
+    height: 100vh;
+    width: 20px;
+}
+.hitBox:hover ~ .settings {
+    transform: translateX(0%);
+}
+.settings:hover {
+    transform: translateX(0%);
+}
+.settings p {
+    flex: 1;
+    display: block;
+    height: auto;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+.settings p img {
+    height: 1em;
+}
+.settings p:hover {
+    background: rgba(75,75,75,0.9);
+}
+.settings input {
+    border-radius: 0 0 20px 0;
+    text-align: center;
+    font-size: 15px;
+    height: 40px;
+    outline: none;
+    border: none;
+}
+.planetNumbers {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    padding: 5vh 0;
+    pointer-events: none;
+    min-width: 100px;
+}
+.planetNumbers div{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.planetNumbers div span {
+    text-align: right;
+    background: red;
+    height: auto;
+    width: 4em;
+    padding: 10px;
+    background: rgba(75,75,75,0.9);
+}
+.indicator {
+    flex: 2;
+    align-items: center;
+}
+.indicator img {
+    height: 50px;
+    margin: 20px auto;
+}
