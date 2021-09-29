@@ -3,6 +3,7 @@
 const Engine = Matter.Engine;
 const Bodies = Matter.Bodies;
 const Composite = Matter.Composite;
+const Runner = Matter.Runner;
 
 const planetNames = ['Mercury','Venus','Earth','Mars','Jupiter','Saturn','Uranus','Neptune'];
 
@@ -10,6 +11,7 @@ var canvas, context, engine;
 var sun, planets;
 var currentPlanet = 'Earth';
 var makeFactor = 10;
+var interval;
 
 function init() {
    
@@ -43,13 +45,14 @@ function init() {
     
     Composite.add(engine.world,  sun.make());
     UIinit();
-    animate();
+
+    interval = window.setInterval(()=>requestAnimationFrame(animate), 1/30*1000);
 }
 
 
 function animate() {
-    
-    setTimeout(()=> requestAnimationFrame(animate), 1/30);
+    // setTimeout(()=> requestAnimationFrame(animate), 1/30);
+
     let planetNumbers = {};
     let EarthsInSun = 0;
     
@@ -103,8 +106,7 @@ function animate() {
             planets.splice(i--, 1);
         }
     }
-    // context.font = "30px Arial";
-    // context.fillText(`count: ${EarthsInSun}`, 300, 50);
+
     updatePlanetNumbers(planetNumbers);
 
     Engine.update(engine);
@@ -117,5 +119,9 @@ function makePlanets(x,y) {
 // startup
 init();
 // event handlers
-window.addEventListener('resize', init);
+window.addEventListener('resize', reset);
 
+function reset() {
+    clearInterval(interval);
+    init();
+}

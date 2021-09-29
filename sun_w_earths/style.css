@@ -5,15 +5,14 @@
     box-sizing: border-box;
 }
 
-.game {
+.sim {
+    display: flex;
     position: absolute;
     height: 100vh;
     width: 100%;
     overflow: hidden;
 }
-.sim {
-    display: flex;
-}
+
 .settings {
     color: white;
     position: absolute;
@@ -91,4 +90,25 @@
 .indicator img {
     height: 50px;
     margin: 20px auto;
+}
+
+.clearbtn {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    bottom: 0.5em;
+    color: white;
+}
+
+.clearbtn a {
+    color: white;
+    text-decoration: none;
+    background: rgba(75,75,75,0.9);
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+}
+.clearbtn a:hover {
+    background: rgba(75,75,75,1);
 }

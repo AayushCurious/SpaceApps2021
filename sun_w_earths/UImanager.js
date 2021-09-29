@@ -4,28 +4,20 @@ var inputBox;
 function UIinit() {
 
     planetChoose = document.querySelector('.sim .settings');
-    inputBox = document.createElement('input')    
+    inputBox = document.querySelector('.settings input');
 
-    for(let i of Object.keys(planetInfo)) {
-        if (i!='Sun') {
-            let p = document.createElement('p');
-            p.appendChild(getImage(i))
-            p.innerHTML += ' '+i;
-            p.addEventListener('mousedown', (e)=>{
-                currentPlanet = i;
-                document.querySelector('.planetNumbers img').src = planetInfo[i].img.src; // for indicator
-            })
-            planetChoose.appendChild(p);
-        }
+    for(let i=0; i<planetNames.length; i++) {
+        document.querySelector(`.settings p:nth-child(${i+1})`).addEventListener('mousedown', (e)=>{
+            currentPlanet = planetNames[i];
+            document.querySelector('.planetNumbers img').src = planetInfo[currentPlanet].img.src; // for indicator
+        });
     }
-    
-    inputBox.id = 'makeFactor';
-    inputBox.type='number';
+
     inputBox.value=makeFactor;
     inputBox.oninput=changeN;
+
     document.querySelector('.planetNumbers img').src = planetInfo[currentPlanet].img.src; // for indicator
     
-    planetChoose.appendChild(inputBox);
 }
 
 function changeN() {
