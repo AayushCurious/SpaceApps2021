@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="good.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+
+    <title>Sol</title>
+</head>
+<body class="body">
+    <nav class="navbar">
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+    <div class='navbar-links'>
+        <ul>
+            <li class="btn"><a href="index.html">Home</a></li>
+            <li class="btn"><a href="Probes.html">Missions</a></li>
+            <li class="btn"><a href="Update.html">Updates</a></li>            
+             <li class="btn"><a href="#">Level-3</a></li>
+        </ul>
+    </div>
+
+    <div>
+      <h5 style="align-items: center;">Solar Dynamics Observatory</h5>
+      <img src="stereo-a-b-2008-positions.gif" width="100%">
+
+        </div>
+    <div style="width: auto; text-align: left;align-items: center; padding: 10px;">
+
+        <p>
+            SDO: The Solar Dynamics Observatory is the first mission to be launched for NASA's Living With a Star (LWS) Program, a program designed to understand the causes of solar variability and its impacts on Earth. SDO is designed to help us understand the Sun's influence on Earth and Near-Earth space by studying the solar atmosphere on small scales of space and time and in many wavelengths simultaneously.
+
+
+            </p>
+    </div>
+
+    
+    <section class="main-section">
+        <div id="faqs" class="container">
+          <div id="faqSection" class="fullwidth-container">
+            <div>
+              <button class="collapsible">What is SDO?</button>
+              <div class="faq-content">
+                <p>NASA’s SDO is the first-ever space mission to discover solar impacts on Earth</p>
+              </div>
+        </div>
+        <div>
+            <button class="collapsible">What will SDO do?</button>
+            <div class="faq-content">
+              <p>Solar Dynamics Observatory performs its scientific investigations in a hazardous region of intense heat and solar radiation</p>
+            </div>
+      </div>
+
+  </div> <div>
+      </section>
+      <style> */
+.container {
+    float: left;
+    width: 80%;
+    margin: 2rem 10%;
+}
+.fullwidth-container {display:block;width:80%;margin:2rem 10%}
+#faqs {}
+
+#faqSection div {
+  float: left;
+  display: inline-block;
+  width: 46%;
+  margin: 0 2%;
+  overflow: hidden;
+}
+#faqSection .collapsible {
+  background-color: black;
+  border: 1px solid #ec790d;
+  border-radius: 7px;
+  box-shadow: 0 10px 30px -15px rgb(0 0 0);
+  transition: box-shadow .2s ease 0s;
+  color: #fff;
+  margin: 0 0 8px;
+  width: 100%;
+  padding: 12px;
+  font-family: sans-serif;
+  font-size: 15px;
+  text-align:left;
+}
+#faqSection .collapsible:hover {
+  box-shadow: 0 10px 60px -15px rgba(0,0,0,1);
+}
+#faqSection .active, #faqSection .collapsible:hover {}
+#faqSection .collapsible:after {content:"\002B";font-weight:bold;float:right;margin-left:5px}
+#faqSection .active:after {content:"\2212"}
+#faqSection .faq-content {
+  overflow: hidden;
+  width: calc(100% - 8%);
+  padding: 5px 2%;
+  transition: all .25s ease-in-out 0s;
+  background: #ec790d;
+  border: 1px solid hsla(0,0%,51.4%,.16);
+  border-radius: 7px;
+  max-height: 0px;
+  visibility: hidden;
+}
+#faqSection .faq-content p {
+  font-family: sans-serif;
+  color: white;
+  line-height: 140%;
+  font-size: 14px;
+  margin: 0 0 12px;
+  text-shadow: 1px 1px 0 rgb(0 0 0 / 80%);
+  font-weight: 100;
+}
+#faqSection .faq-content a {
+  color: #00C58E;
+  font-weight: 600;
+  letter-spacing: .05rem;
+}
+#faqSection .faq-content ul {border-left:2px solid #00C58E}
+#faqSection .faq-content li {
+  color: #bad2e2;
+  font-size: .85rem;
+  line-height: 160%;
+  font-weight: 200;
+  margin: 8px 0 8px 2%;
+  list-style: none;
+  width: 90%;
+  font-family: sans-serif;
+  text-shadow: 1px 1px 0 rgb(0 0 0);
+}
+.myFooter {
+  float: left;
+  width: 100%;
+  display: block;
+  background: #0A192F;
+  text-align:center;
+  height:10vh
+}
+.myFooter p {
+  color: #fff;
+  font-family: sans-serif;
+  text-shadow: 1px 1px 0 rgb(0 0 0);
+}
+.myFooter a {
+  color: #00C58E;
+  text-decoration:none
+}
+      </style>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++){
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+      content.style.visibility = "hidden";
+      content.style.margin = "0 2%";
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.visibility = "visible";
+      content.style.margin = "12px 2%";
+    }
+  });
+}
+</script> 
+<div>
+<!-- <iframe src='https://solarsystem.nasa.gov/gltf_embed/2356' width='100%' height='450px' frameborder='0' /> -->
+<!-- <p>3D Model</p> -->
+</div>
+<img src="sdo_eve_anim.jpg" width="100%">
+</body>
+</html>
