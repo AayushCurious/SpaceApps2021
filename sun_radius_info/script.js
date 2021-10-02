@@ -5,11 +5,16 @@ const sunRadius = 696340;
 
 var canvas, ctx;
 
-var radius, radiusScaled;
+var radius, radiusScaled, particles=[];
 
-const slider = document.querySelector('#radius_config');
+const slider      = document.querySelector('#radius_config');
+const density     = document.querySelector('#density');
+const surfaceArea = document.querySelector('#surfaceArea');
+const volume      = document.querySelector('#volume');
+const g           = document.querySelector('#g');
 
-
+const sunImage = document.createElement('img');
+sunImage.src   = 'sun.jpg';
 
 
 function init() {
@@ -26,27 +31,39 @@ function init() {
     canvasWrapper.innerHTML = '';
     canvasWrapper.appendChild(canvas);
     
-    
+    sunImage.width = `${radius*2}px`;
     radiusChanged()
 }
+
 function animate () {
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0, canvas.width, canvas.height);
     
     drawSun();
+
+    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const colorFactor = getColor();
+    for (let i = 0; i < imgData.data.length; i += 4) {
+        const r = imgData.data[i]
+            , g = imgData.data[i+1]
+            , b = imgData.data[i+2]
+            , avg = Math.max(r,g,b)/255
+        imgData.data[i]   = colorFactor[0]*avg;
+        imgData.data[i+1] = colorFactor[1]*avg;
+        imgData.data[i+2] = colorFactor[2]*avg;
+    }
+    ctx.putImageData(imgData, 0, 0);
+    
+    density.innerHTML     = getDensity().toExponential(2) + ' kg/km<sup>3</sup>';
+    surfaceArea.innerHTML = getSurfaceArea().toExponential(2) + ' km<sup>2</sup>';
+    volume.innerHTML      = getVolume().toExponential(2) + ' km<sup>3</sup>';
+    g.innerHTML           = getAccG().toExponential(2)   + ' km/s<sup>2</sup>';
+
     requestAnimationFrame(animate);
 }
 
 init();
 animate();
-
-
-
-
-
-
-
-
 
 
 
@@ -72,44 +89,32 @@ function radiusChanged() {
 
 
 function drawSun() {
-   
-    ctx.fillStyle = getColor();
-    ctx.strokeStyle = '#ff8800';
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, radius, 0, 2*Math.PI);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+    let x = canvas.width/2-radius;
+    let y = canvas.height/2 - radius;
+    
+    ctx.drawImage(sunImage, x, y, radius*2, radius*2);
 }
 
 function map(val, min1,max1, min2, max2) {
     return (val-min1)/(max1-min1) * (max2-min2) + min2;
 }
 
-
-/*
-sun's radius = 696340
-mass = 1.989*10**30 kg
-
-swarzschild radius = 2*G*m/c^2 = 1.4851831*10^-27 * m -> radius in meters
-    = 1.4851831*10**-27
-    = 2.9541777 km
-
-
-1            -       100
-2.9541777    -       1390997.04582
-
-(input - 1)/100  * 1390997.04582  + 2.9541777
-*/
-
 function getRadius(input) {
     let sradius = SchwarzschildRadius();
     return map(input, 1,101, sradius, 2*sunRadius+sradius);
 }
 
+function getVolume() {
+    return 4/3*Math.PI*radiusScaled**3;
+}
+function getSurfaceArea() {
+    return 4*Math.PI*radiusScaled**2;
+}
 function getDensity() {
-    let volume = 4/3*Math.PI*radiusScaled**3;
-    return mass / volume;
+    return mass / getVolume();
+}
+function getAccG() {
+    return 6.67408*10**-11*mass / radiusScaled**2;
 }
 
 function getColor() {
@@ -124,8 +129,7 @@ function getColor() {
     if (green.length==1) green= '0'+green;
     if (blue.length ==1) blue = '0'+blue;
 
-    let color = '#'+red+green+blue;
-    return color
+    return [parseInt(red, 16),parseInt(green, 16),parseInt(blue, 16)];
 }
 
 function SchwarzschildRadius() {
@@ -136,15 +140,4 @@ window.addEventListener('resize', ()=>{
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     radius = Math.min(window.innerHeight, window.innerWidth)*.60 / 2;
-})
-
-
-
-
-
-
-
-
-
-
-
+});
