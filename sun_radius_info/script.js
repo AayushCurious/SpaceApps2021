@@ -4,8 +4,10 @@ const mass = 1.989*10**30;
 const sunRadius = 696340;
 
 var canvas, ctx;
+var animationInterval;
 
 var radius, radiusScaled, particles=[];
+var velocity;
 
 const slider      = document.querySelector('#radius_config');
 const density     = document.querySelector('#density');
@@ -14,29 +16,59 @@ const volume      = document.querySelector('#volume');
 const g           = document.querySelector('#g');
 
 const sunImage = document.createElement('img');
+const vel = document.querySelector('#velocity_config');
+
 sunImage.src   = 'sun.jpg';
+
+deltaTime = 1/30; // 30 fps
 
 
 function init() {
-    const canvasWrapper = document.querySelector('.canvasWrapper');
-    canvas = document.createElement('canvas');
+    if (!canvas){
+        const canvasWrapper = document.querySelector('.canvasWrapper');
+        canvas = document.createElement('canvas');
+        canvasWrapper.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let min = slider.min
+    let max = slider.max
+    let val = slider.value
+
+    if (val<=1) document.querySelector('#Swarzschild').style.transform = 'translateY(0)';
+
+    radiusScaled = getRadius(val);
+    slider.setAttribute('data-before', `${radiusScaled.toFixed(2)}km`);
+    slider.style.backgroundSize = `${(val - min) * 100 / (max - min)}% 100%`
     
+    min = vel.min
+    max = vel.max
+    val = vel.value
+    vel.setAttribute('velocity', `${val}km/s`);
+    vel.style.backgroundSize = `${(val - min) * 100 / (max - min)}% 100%`;
+    velocity = +val;
+
     ctx = canvas.getContext('2d');
     
-    radius = Math.min(window.innerHeight, window.innerWidth)*.60 / 2;
+    radius = Math.min(window.innerHeight, window.innerWidth)*.30 / 2;
     
-    canvasWrapper.innerHTML = '';
-    canvasWrapper.appendChild(canvas);
     
     sunImage.width = `${radius*2}px`;
-    radiusChanged()
+
+    particles = [];
+    let rangeMax = canvas.height/2-radius
+    for (let i=10; i<rangeMax; i+=rangeMax/20) {
+        particles.push( new particle(i) );
+    }
+    
+    if(animationInterval) clearInterval(animationInterval);
+
+    animationInterval = window.setInterval(()=>requestAnimationFrame(animate), deltaTime*1000);
 }
 
 function animate () {
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#000';
     ctx.fillRect(0,0, canvas.width, canvas.height);
     
     drawSun();
@@ -59,11 +91,14 @@ function animate () {
     volume.innerHTML      = getVolume().toExponential(2) + ' km<sup>3</sup>';
     g.innerHTML           = getAccG().toExponential(2)   + ' km/s<sup>2</sup>';
 
-    requestAnimationFrame(animate);
+
+    for (let i=0; i<particles.length; i++) {
+        if (!particles[i].update()) particles.splice(i--,1);
+        particles[i].show();
+    }
 }
 
 init();
-animate();
 
 
 
@@ -74,17 +109,7 @@ animate();
 
 
 function radiusChanged() {
-    const min = slider.min
-    const max = slider.max
-    const val = slider.value
-
-    radiusScaled = getRadius(val);
-
-    slider.setAttribute('data-before', `${radiusScaled.toFixed(2)}km`);
-    
-    slider.style.backgroundSize = `${(val - min) * 100 / (max - min)}% 100%`
-
-    
+    init();
 }
 
 
@@ -114,7 +139,7 @@ function getDensity() {
     return mass / getVolume();
 }
 function getAccG() {
-    return 6.67408*10**-11*mass / radiusScaled**2;
+    return 6.67408*10**-11*mass / (radiusScaled*1000)**2 / 1000;
 }
 
 function getColor() {
@@ -139,5 +164,15 @@ function SchwarzschildRadius() {
 window.addEventListener('resize', ()=>{
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
-    radius = Math.min(window.innerHeight, window.innerWidth)*.60 / 2;
+    radius = Math.min(window.innerHeight, window.innerWidth)*.30 / 2;
+    if (animationInterval) clearInterval(animationInterval);
+    init();
 });
+
+document.addEventListener('mousedown', function (e) {
+    var container = document.querySelector('#Swarzschild');
+
+    if (!container.contains(e.target)) {
+        container.style.transform = 'translateY(-100%)';
+    }
+}.bind(this));
