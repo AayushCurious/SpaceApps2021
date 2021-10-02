@@ -338,3 +338,27 @@ body{
   left: 600px;
   margin: 10px;
 }
+
+
+.small:hover{
+  transform: scale(1.1);
+  box-shadow: 6px 5px 7px 5px rgb(255,117,24), 6px 5px 7px 5px #333;
+}
+
+.linkk:hover{
+  background-color: black;
+}
+
+.huge {
+  /* border: 3px solid #fff; */
+  padding: 20px;
+}
+
+.small {
+  width: 250px;
+  height: 100%;
+  /* margin:10%; */
+  background-color: #333;
+  box-shadow: 5px 4px 6px 4px rgb(255,117,24), 5px 4px 6px 4px #333;
+  transition: 0.8s;
+}  
