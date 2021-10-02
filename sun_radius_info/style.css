@@ -16,6 +16,7 @@
     display: table;
     vertical-align: center;
     width: 100%;
+    color: white;
     height: 100vh;
 }
 #inputs {
