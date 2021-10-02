@@ -112,7 +112,7 @@
             <li class="btn"><a href="index.html">Home</a></li>
             <li class="btn"><a href="Probes.html">Missions</a></li>
             <li class="btn"><a href="Update.html">Updates</a></li>            
-             <li class="btn"><a href="">Level-3</a></li>
+             <li class="btn"><a href="l3.html">Level-3</a></li>
         </ul>
     </div>
     </nav>
@@ -133,7 +133,7 @@
     <p id="demo" style="transition: 0.7s ease-in-out;"></p>
 </div>
     <script>
-    var countDownDate = new Date("Oct 2, 2021 15:37:25").getTime();
+    var countDownDate = new Date("Sept 30, 2021 15:37:25").getTime();
     var x = setInterval(function() {
       var now = new Date().getTime();
       var distance = countDownDate - now;
@@ -149,7 +149,7 @@
       }
     }, 1000);
     </script>
-<p>Mean Time Solar Radiation Change</p>
+<p>Dataset Solar</p>
 <canvas id="myChart" style="width:100%;max-width:300px"></canvas>
 
 <script>
@@ -213,15 +213,15 @@ function generateData(value, i1, i2, step = 1) {
 }
 </script>
 <canvas id="myChart3" style="width:100%;max-width:400px;transition: 0.7s;"></canvas>
-<div class="ISW">Integrated Space-Weather Metric</div>
+<div class="ISW">Integrated-Space-Weather</div>
 <script>
 var xValues = [50,60,70,80,90,100,110,120,130,140,150];
 var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-//     fetch=('api.nasa.gov/planetary/apod?api_key=4ItWYHoQejvabrVzInkmDAHo79FlRkSpxtpKi0Dy')
- 
+
 new Chart("myChart3", {
   type: "line",
   data: {
+    labels: xValues,
     datasets: [{
       fill: false,
       lineTension: 0,
