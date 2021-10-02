@@ -12,9 +12,25 @@
     <div class='sim'>
         <div class='canvasWrapper'></div>
         <div class='GUI'>
-            <input type='range' id='radius_config' min=1 max=100 oninput='radiusChanged()'>
+            <table border="1px" cellspacing='0px'>
+                <tr><td>density     </td><td id='density'>    </td></tr>
+                <tr><td>surface Area</td><td id='surfaceArea'></td></tr>
+                <tr><td>volume      </td><td id='volume'>     </td></tr>
+                <tr><td>surface g   </td><td id='g'>          </td></tr>
+                
+            </table>
+            <div id='inputs'>
+                <input type='range' id='radius_config' min=1 max=100 oninput='init()'>
+                <input type='range' id='velocity_config' min=1 max=500 oninput='init()' value=22>
+                <button onclick='init()'>restart</button>
+            </div>
+            <div id='Swarzschild'>
+                <h1>Swarzschild Radius Reached</h1>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore in voluptatem atque mollitia fuga dicta unde at ea voluptatibus! Reprehenderit, porro modi. Saepe rerum ad sit harum labore facere similique?</p>
+            </div>
         </div>
     </div>
+    <script src='particles.js'></script>
     <script src='script.js'></script>
 </body>
 </html>

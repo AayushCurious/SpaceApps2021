@@ -13,33 +13,63 @@
 }
 .GUI {
     position: absolute;
-    bottom: 0;
+    display: table;
+    vertical-align: center;
+    width: 100%;
+    height: 100vh;
+    color:rgba(255, 255, 255, 0.75);
 }
-#radius_config {
+#inputs {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+input[type='range'] {
     -webkit-appearance: none;
-    margin-right: 15px;
     height: 2em;
-    background: rgba(255, 255, 255, 0.6);
+    width: 200px;
     border-radius: 5px;
     background: #111;
     background-image: linear-gradient(#555, #555);
     background-size: 50% 100%;
     background-repeat: no-repeat;
+    margin: 0.5em;
     text-align: center;
 }
 #radius_config::before {
+    content: 'radius: ';
+    position: absolute;
+    display: block;
+    padding: 0.5em;
+    font-size: 1em;
+}
+#radius_config::after {
     content: attr(data-before);;
-    color:rgba(255, 255, 255, 0.6);
     display: block;
     position: absolute;
-    width: 100%;
+    width: 200px;
     padding: 0.5em 0;
     margin: auto;
 }
-#radius_config:hover {
+#velocity_config::before {
+    content: 'velocity: ';
+    position: absolute;
+    display: block;
+    padding: 0.5em;
+    font-size: 1em;
+}
+#velocity_config::after {
+    content: attr(velocity);;
+    display: block;
+    position: absolute;
+    width: 200px;
+    padding: 0.5em 0;
+    margin: auto;
+}
+input[type='range']:hover {
     cursor: ew-resize;
 }
-#radius_config::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     height:1px;
     width: 1px;
@@ -47,9 +77,42 @@
     transition: background .3s ease-in-out;
     
 }
-#radius_config::-webkit-slider-runnable-track  {
+input[type='range']::-webkit-slider-runnable-track  {
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
+}
+table {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+}
+td { padding: 10px; }
+tr td:nth-child(2) { min-width: 175px; }
+table tr:nth-child(1) td:nth-child(1){
+    border-radius: 10px 0 0 0;
+}
+button {
+    height: 2em;
+    width: 200px;
+    background: #111;
+    color:rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+    border: none;
+    margin: 0.5em;
+    cursor: pointer;
+}
+button:hover {
+    background-image: linear-gradient(#555, #555);
+}
+#Swarzschild {
+    display: block;
+    transform: translateY(-100%);
+    position: absolute;
+    text-align:center;
+    background: rgba(15, 15, 15, 0.75);
+    padding: 2em 1em;
+    transition: 0.7s;
 }
