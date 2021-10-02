@@ -328,7 +328,8 @@ body{
 
 .tweet{
   width: 39%;
-  height: 300px;
+  overflow-y: scroll;
+  height: 600px;
 }
 
 .imgg{
