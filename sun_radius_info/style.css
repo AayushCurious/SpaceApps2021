@@ -117,8 +117,15 @@ button:hover {
     display: block;
     transform: translateY(-100%);
     position: absolute;
+    width: 100%;
     text-align:center;
     background: rgba(15, 15, 15, 0.75);
     padding: 2em 1em;
     transition: 0.7s;
+}
+#Swarzschild h1 {
+    padding: 10px;
+}
+#Swarzschild a {
+    color: white;
 }

@@ -95,23 +95,31 @@
     margin: 20px auto;
 }
 
-.clearbtn {
+.clearBack {
     position: absolute;
+    display: flex;
+    bottom: 0;
     width: 100%;
-    text-align: center;
-    margin: auto;
-    bottom: 0.5em;
-    color: white;
 }
 
-.clearbtn a {
+.clearbtn, .backbtn {
+    flex: 1;
+    padding: 0 10px;
+    color: white;
+}
+.clearbtn a, .backbtn a {
+    text-align: center;
     color: white;
     text-decoration: none;
     background: rgba(75,75,75,0.9);
     padding: 10px 20px;
     border-radius: 10px 10px 0 0;
     cursor: pointer;
+    float: right;
 }
-.clearbtn a:hover {
+.backbtn a {
+    float:left;
+}
+.clearbtn a:hover, .backbtn a:hover {
     background: rgba(75,75,75,1);
 }
