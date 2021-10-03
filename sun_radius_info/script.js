@@ -94,7 +94,7 @@ function animate () {
 
     for (let i=0; i<particles.length; i++) {
         if (!particles[i].update()) particles.splice(i--,1);
-        particles[i].show();
+        else particles[i].show();
     }
 }
 
